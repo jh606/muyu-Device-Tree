@@ -42,26 +42,6 @@
     └── dtbo.img            # OTA 原始 dtbo
 ```
 
-## 编译
-
-```bash
-repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-14.0
-repo sync -j8
-git clone <this repo> device/xiaomi/muyu
-./device/xiaomi/muyu/extract-files.sh
-source build/envsetup.sh
-lunch omni_muyu-eng
-mka recoveryimage
-```
-
-刷入（A/B + 独立 recovery 分区）：
-
-```bash
-fastboot flash recovery out/target/product/muyu/recovery.img
-fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img
-fastboot reboot recovery
-```
-
 ## 已知限制
 
 1. `BOARD_SUPER_PARTITION_SIZE := 9126805504` 是 twrpdtgen 模板占位，需用 `blockdev --getsize64 /dev/block/by-name/super` 的真实值替换。
@@ -77,3 +57,8 @@ fastboot reboot recovery
 ## License
 
 Apache-2.0
+
+---
+
+> 本仓库的设备树由 **DeepSeek Harness AI 助手**从设备镜像中提取、生成并整理，代为提交上传至 GitHub。
+
